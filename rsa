@@ -1,33 +1,33 @@
-import sys
-import math
+#include "factor.h"
 
-def is_prime(num):
-    if num < 2:
-        return False
-    for i in range(2, int(math.sqrt(num)) + 1):
-        if num % i == 0:
-            return False
-    return True
+/**
+ * main - main function
+ *
+ * Author: Thaoban Abdrasheed
+ * Return: void
+ */
+int main(int argc, char *argv[])
+{
+	FILE *fptr;
+	size_t count;
+	ssize_t line;
+	char *buffer = NULL;
 
-def factorize(num):
-    for i in range(2, int(math.sqrt(num)) + 1):
-        if num % i == 0 and is_prime(i) and is_prime(num // i):
-            return (i, num // i)
-    return None
 
-if len(sys.argv) != 2:
-    print("Usage: rsa_factors <file>")
-    sys.exit(1)
-
-filename = sys.argv[1]
-try:
-    with open(filename, 'r') as f:
-        num = int(f.readline().strip())
-        factors = factorize(num)
-        if factors is not None:
-            print(f"{num}={factors[0]}*{factors[1]}")
-        else:
-            print(f"{num} is prime")
-except FileNotFoundError:
-    print(f"Error: {filename} not found")
-    sys.exit(1)
+	if (argc != 2)
+	{
+		fprintf(stderr, "Usage: factor <filename>\n");
+		exit(EXIT_FAILURE);
+	}
+	fptr = fopen(argv[1], "r");
+	if (fptr == NULL)
+	{
+		fprintf(stderr, "Error: can't open file %s\n", argv[1]);
+		exit(EXIT_FAILURE);
+	}
+	while((line = getline(&buffer, &count, fptr)) != -1)
+	{
+		factorize(buffer);
+	}
+return (0);
+}
